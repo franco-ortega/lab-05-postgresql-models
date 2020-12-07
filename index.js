@@ -8,8 +8,8 @@ app.get('/', (req, res) => {
   res.send('Heellloooo');
 });
 
-// app.listen(5432, () => {
-//     console.log('started on PORT 5432');
-// });
+app.listen(1235, () => {
+    console.log('started on PORT 1235');
+});
 
 module.exports = app;
