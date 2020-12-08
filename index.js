@@ -6,7 +6,7 @@ const Pizza = require('./lib/models/pizza');
 
 
 app.get('/', (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   res.send('Heellloooo');
 });
 
@@ -52,8 +52,8 @@ app.delete('/pizza/:id', (req, res) => {
     .then(pizza => res.send(pizza));
 });
 
-app.listen(1234, () => {
-  console.log('started on PORT 1234');
-});
+// app.listen(1234, () => {
+//   console.log('started on PORT 1234');
+// });
 
 module.exports = app;
