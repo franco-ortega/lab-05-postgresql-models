@@ -36,7 +36,7 @@ app.get('/pizza/:id', (req, res) => {
 app.put('/pizza/:id', (req, res) => {
   const pizzaId = req.params.id;
   Pizza
-    .update(pizzaId)
+    .update(pizzaId, req.body)
     .then(pizza => res.send(pizza));
 });
 
