@@ -26,7 +26,8 @@ CREATE TABLE planets (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     title TEXT NOT NULL,
     color TEXT NOT NULL,
-    circumfrence BIGINT NOT NULL
+    size TEXT NOT NULL,
+    rings BIGINT NOT NULL
 );
 
 CREATE TABLE blankets (
