@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 app.use(express.json());
+const Pizza = require('./lib/models/pizza');
 
 // const Pizza = require('./lib/models/Pizza');
 
@@ -24,25 +25,29 @@ app.get('/pizza', (req, res) => {
 });
 
 // Get one pizza by ID
-app.get('/pizza', (req, res) => {
+app.get('/pizza/:id', (req, res) => {
+  const pizzaId = req.params.id;
   Pizza
-    .findById(id)
+    .findById(pizzaId)
     .then(pizza => res.send(pizza));
 });
 
 // Update one pizza by ID
-app.put('/pizza', (req, res) => {
+app.put('/pizza/:id', (req, res) => {
+  const pizzaId = req.params.id;
   Pizza
-    .update(id)
+    .update(pizzaId)
     .then(pizza => res.send(pizza));
 });
 
-// DElete one pizza by ID
-app.put('/pizza', (req, res) => {
+// Delete one pizza by ID
+app.delete('/pizza/:id', (req, res) => {
+  const pizzaId = req.params.id;
   Pizza
-    .delete(id)
+    .delete(pizzaId)
     .then(pizza => res.send(pizza));
 });
+
 
 
 app.get('/', (req, res) => {
