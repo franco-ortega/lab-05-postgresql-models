@@ -2,6 +2,7 @@ const fs = require('fs');
 const request = require('supertest');
 const app = require('../index.js');
 const pool = require('../lib/utils/pool.js');
+const Pizza = require('../lib/models/pizza.js');
 
 describe('app endpoints in index.js', () => {
   beforeEach(() => {
@@ -36,6 +37,18 @@ describe('app endpoints in index.js', () => {
       sauce: 'marinara',
       price: '13'
     });
+  });
+
+  it('finds one pizza via GET', async() => {
+    const pizza = await Pizza.insert({ title: 'fun',
+      toppings: 'pineapple, jalapeno',
+      sauce: 'marinara',
+      price: '15' });
+
+    const response = await request(app)
+      .get(`/pizza/${pizza.id}`);
+      
+    expect(response.body).toEqual(pizza);
   });
 
 });
