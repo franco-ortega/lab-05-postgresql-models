@@ -4,6 +4,12 @@ const app = express();
 app.use(express.json());
 const Pizza = require('./lib/models/pizza');
 
+
+app.get('/', (req, res) => {
+  console.log(req.body);
+  res.send('Heellloooo');
+});
+
 // Create a pizza
 app.post('/pizza', (req, res) => {
   try {
