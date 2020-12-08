@@ -51,4 +51,28 @@ describe('app endpoints in index.js', () => {
     expect(response.body).toEqual(pizza);
   });
 
+  it('updates one pizza via PUT', async() => {
+    const pizza = await Pizza.insert({ title: 'vegan',
+      toppings: 'leaves, twigs',
+      sauce: 'none',
+      price: '20' });
+
+    const response = await request(app)
+      .put(`/pizza/${pizza.id}`)
+      .send({
+        title: 'vegan',
+        toppings: 'artichoke, broccoli',
+        sauce: 'olive oil',
+        price: '10'
+      });
+      
+    expect(response.body).toEqual({
+      ...pizza,
+      title: 'vegan',
+      toppings: 'artichoke, broccoli',
+      sauce: 'olive oil',
+      price: '10'
+    });
+  });
+
 });
