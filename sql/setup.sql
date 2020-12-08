@@ -10,6 +10,7 @@ CREATE TABLE dragons (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     species TEXT NOT NULL,
     color TEXT NOT NULL,
+    terrain TEXT NOT NULL,
     legs BIGINT NOT NULL
 );
 
