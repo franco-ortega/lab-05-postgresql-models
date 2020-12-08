@@ -39,18 +39,35 @@ describe('app endpoints in index.js', () => {
     });
   });
 
+  it('finds all pizzas via GET', async() => {
+    const pizza1 = await Pizza.insert({ title: 'fun',
+      toppings: 'pineapple, jalapeno',
+      sauce: 'marinara',
+      price: '15' }
+    );
+    const pizza2 = await Pizza.insert({ title: 'wow',
+      toppings: 'pb, jam',
+      sauce: 'butter',
+      price: '25' });
+      
+    const response = await request(app)
+      .get('/pizza');
+      
+    expect(response.body).toEqual([pizza1, pizza2]);
+  });
+
   it('finds one pizza via GET', async() => {
     const pizza = await Pizza.insert({ title: 'fun',
       toppings: 'pineapple, jalapeno',
       sauce: 'marinara',
       price: '15' });
-
+  
     const response = await request(app)
       .get(`/pizza/${pizza.id}`);
-      
+        
     expect(response.body).toEqual(pizza);
   });
-
+  
   it('updates one pizza via PUT', async() => {
     const pizza = await Pizza.insert({ title: 'vegan',
       toppings: 'leaves, twigs',
