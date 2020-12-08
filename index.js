@@ -4,17 +4,15 @@ const app = express();
 app.use(express.json());
 const Pizza = require('./lib/models/pizza');
 
-// const Pizza = require('./lib/models/Pizza');
-
-// Pizza
-//   .insert({ title: 'greek', toppings: 'greensss', sauce: 'white', price: 12 })
-//   .then(console.log);
-
 // Create a pizza
 app.post('/pizza', (req, res) => {
-  Pizza
-    .insert(req.body)
-    .then(pizza => res.send(pizza));
+  try {
+    Pizza
+      .insert(req.body)
+      .then(pizza => res.send(pizza));
+  } catch(e) {
+    res.status(500).json({ error: e.message });
+  }
 });
 
 // Get all pizzas
@@ -39,7 +37,7 @@ app.put('/pizza/:id', (req, res) => {
     .update(pizzaId, req.body)
     .then(pizza => res.send(pizza));
 });
-
+ 
 // Delete one pizza by ID
 app.delete('/pizza/:id', (req, res) => {
   const pizzaId = req.params.id;
@@ -48,15 +46,8 @@ app.delete('/pizza/:id', (req, res) => {
     .then(pizza => res.send(pizza));
 });
 
-
-
-app.get('/', (req, res) => {
-  console.log(req.body);
-  res.send('Heellloooo');
-});
-
 app.listen(1234, () => {
-    console.log('started on PORT 1234');
+  console.log('started on PORT 1234');
 });
 
 module.exports = app;

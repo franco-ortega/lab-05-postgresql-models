@@ -5,3 +5,35 @@ CREATE TABLE pizzas (
     sauce TEXT NOT NULL,
     price BIGINT NOT NULL
 );
+
+CREATE TABLE dragons (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    species TEXT NOT NULL,
+    color TEXT NOT NULL,
+    legs BIGINT NOT NULL
+);
+
+CREATE TABLE potions (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    title TEXT NOT NULL,
+    flavor TEXT NOT NULL,
+    color TEXT NOT NULL,
+    price BIGINT NOT NULL
+);
+
+CREATE TABLE planets (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    title TEXT NOT NULL,
+    color TEXT NOT NULL,
+    circumfrence BIGINT NOT NULL
+);
+
+CREATE TABLE blankets (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    title TEXT NOT NULL,
+    color TEXT NOT NULL,
+    size TEXT NOT NULL,
+    price BIGINT NOT NULL
+);
+
+
