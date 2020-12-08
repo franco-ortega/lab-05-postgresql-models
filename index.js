@@ -4,12 +4,6 @@ const app = express();
 app.use(express.json());
 const Pizza = require('./lib/models/pizza');
 
-
-app.get('/', (req, res) => {
-  //console.log(req.body);
-  res.send('Heellloooo');
-});
-
 // Create a pizza
 app.post('/pizza', (req, res) => {
   try {
@@ -51,9 +45,5 @@ app.delete('/pizza/:id', (req, res) => {
     .delete(pizzaId)
     .then(pizza => res.send(pizza));
 });
-
-// app.listen(1234, () => {
-//   console.log('started on PORT 1234');
-// });
 
 module.exports = app;

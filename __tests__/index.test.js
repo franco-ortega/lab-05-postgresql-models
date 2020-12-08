@@ -13,14 +13,6 @@ describe('app endpoints in index.js', () => {
     return pool.end();
   });
 
-  //   it('responds with Heellloooo to test if things are connected correctly', () => {
-  //     return request(app)
-  //       .get('/')
-  //       .then(res => {
-  //         expect(res.text).toEqual('Heellloooo');
-  //       });
-  //   });
-
   it('creates a pizza via POST', async() => {
     const response = await request(app)
       .post('/pizza')
@@ -89,6 +81,24 @@ describe('app endpoints in index.js', () => {
       toppings: 'artichoke, broccoli',
       sauce: 'olive oil',
       price: '10'
+    });
+  });
+
+  it('deletes one pizza via DELETE', async() => {
+    const pizza = await Pizza.insert({ title: 'meaty',
+      toppings: 'cow, pig',
+      sauce: 'blood',
+      price: '5' });
+
+    const response = await request(app)
+      .delete(`/pizza/${pizza.id}`);
+      
+    expect(response.body).toEqual({
+      ...pizza,
+      title: 'meaty',
+      toppings: 'cow, pig',
+      sauce: 'blood',
+      price: '5'
     });
   });
 
