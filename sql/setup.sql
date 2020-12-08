@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS pizzas;
+
 CREATE TABLE pizzas (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     title TEXT NOT NULL,
@@ -37,5 +39,3 @@ CREATE TABLE blankets (
     size TEXT NOT NULL,
     price BIGINT NOT NULL
 );
-
-
